@@ -1,4 +1,4 @@
-FROM php:7.3.12-fpm
+FROM php:7.4-fpm
 
 LABEL maintainer="Artūrs Logins <arturs.logins@esynergy.lv>"
 
@@ -9,6 +9,7 @@ RUN apt-get update && apt-get upgrade -y \
     && apt-get install -y \
     ca-certificates \
     g++ \
+    git \
     libbz2-dev \
     libc-client-dev \
     libcurl4-gnutls-dev \
@@ -49,9 +50,9 @@ RUN apt-get update && apt-get upgrade -y \
     sockets \
     xmlrpc \
     xsl \
-    && wget --no-check-certificate https://phar.phpunit.de/phpunit-6.5.14.phar \
-    && chmod +x phpunit-6.5.14.phar \
-    && mv phpunit-6.5.14.phar /usr/local/bin/phpunit \
+    && wget --no-check-certificate https://phar.phpunit.de/phpunit-8.5.1.phar \
+    && chmod +x phpunit-8.5.1.phar \
+    && mv phpunit-8.5.1.phar /usr/local/bin/phpunit \
     && PHP_OPENSSL=yes docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install -j$(nproc) imap \
     && docker-php-ext-configure intl \
